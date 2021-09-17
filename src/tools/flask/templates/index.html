@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Awesome-pyecharts</title>
+    <script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+
+</head>
+<body>
+    <div id="bar" style="width:1000px; height:600px;"></div>
+    <a id="position">仓位</a>
+    <script type="text/javascript">
+    args={{instrumentid|tojson}};
+    document.getElementById("position").href="position/"+args;
+    </script>
+
+
+
+    <script>
+
+        // var queryStrings=function() {//get url querystring
+        // var params=document.location.search,reg=/(?:^\?|&)(.*?)=(.*?)(?=&|$)/g,temp,args={};
+        // while((temp=reg.exec(params))!=null) args[temp[1]]=decodeURIComponent(temp[2]);
+        // return args;
+        // };
+
+        // //只取一个：
+        // var queryString=function(key){
+        //     return (document.location.search.match(new RegExp("(?:^\\?|&)"+key+"=(.*?)(?=&|$)"))||['',null])[1];
+        // }
+        // var args=queryStrings();
+        args={{instrumentid|tojson}};
+        // {{instrumentid}}
+
+        var chart = echarts.init(document.getElementById('bar'), 'white', {renderer: 'canvas'});
+        var old_data1 = [];
+        var old_data2 = [];
+        var old_position=[];
+        var old_profit=[];
+        var position=0;
+        $(
+            function () {
+                fetchData(chart);
+                setInterval(getDynamicData, 500);
+            }
+        );
+        
+
+        function fetchData() {
+            $.ajax({
+                type: "GET",
+                url: "http://192.168.0.110:5001/lineChart/"+String(args),
+                dataType: "json",
+                success: function (result) {
+                    chart.setOption(result);
+                    old_data1 = chart.getOption().series[0].data;
+                    
+                    for (var i=0;i<old_data1.length;i++)
+                    { 
+                        old_data2.push([old_data1[i][0],chart.getOption().series[1].data[i]])
+                        old_position.push([old_data1[i][0],chart.getOption().series[2].data[i]])
+                        old_profit.push([old_data1[i][0],chart.getOption().series[3].data[i]])
+
+                    }
+                    chart.setOption({
+                        series: [{data: old_data1},{data:old_data2},{data:old_position},{data:old_return}]
+                    });
+                }
+            });
+        }
+
+        function getDynamicData() {
+            $.ajax({
+                type: "GET",
+                url: "http://192.168.0.110:5001/lineDynamicData/"+String(args),
+                dataType: "json",
+                success: function (result) {
+                    old_data1.push([result.time, result.value]);
+                    old_data2.push([result.time,result.volume]);
+                    old_position.push([result.time,result.position]);
+                    old_profit.push([result.time,result.profit]);
+
+                    old_data1.shift();
+                    old_data2.shift();
+                    old_position.shift();
+                    chart.setOption({
+                        series: [{data: old_data1},{data:old_data2},{data:old_position},{data:old_profit}]
+                    });
+                }
+            });
+        }
+
+
+    </script>
+
+</body>
+</html>

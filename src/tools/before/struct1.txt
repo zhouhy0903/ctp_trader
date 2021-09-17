@@ -1,0 +1,66 @@
+struct CThostFtdcInstrumentField
+{
+	///��Լ����
+	TThostFtdcInstrumentIDType	InstrumentID;
+	///����������
+	TThostFtdcExchangeIDType	ExchangeID;
+	///��Լ����
+	TThostFtdcInstrumentNameType	InstrumentName;
+	///��Լ�ڽ������Ĵ���
+	TThostFtdcExchangeInstIDType	ExchangeInstID;
+	///��Ʒ����
+	TThostFtdcInstrumentIDType	ProductID;
+	///��Ʒ����
+	TThostFtdcProductClassType	ProductClass;
+	///�������
+	TThostFtdcYearType	DeliveryYear;
+	///������
+	TThostFtdcMonthType	DeliveryMonth;
+	///�м۵�����µ���
+	TThostFtdcVolumeType	MaxMarketOrderVolume;
+	///�м۵���С�µ���
+	TThostFtdcVolumeType	MinMarketOrderVolume;
+	///�޼۵�����µ���
+	TThostFtdcVolumeType	MaxLimitOrderVolume;
+	///�޼۵���С�µ���
+	TThostFtdcVolumeType	MinLimitOrderVolume;
+	///��Լ��������
+	TThostFtdcVolumeMultipleType	VolumeMultiple;
+	///��С�䶯��λ
+	TThostFtdcPriceType	PriceTick;
+	///������
+	TThostFtdcDateType	CreateDate;
+	///������
+	TThostFtdcDateType	OpenDate;
+	///������
+	TThostFtdcDateType	ExpireDate;
+	///��ʼ������
+	TThostFtdcDateType	StartDelivDate;
+	///����������
+	TThostFtdcDateType	EndDelivDate;
+	///��Լ��������״̬
+	TThostFtdcInstLifePhaseType	InstLifePhase;
+	///��ǰ�Ƿ���
+	TThostFtdcBoolType	IsTrading;
+	///�ֲ�����
+	TThostFtdcPositionTypeType	PositionType;
+	///�ֲ���������
+	TThostFtdcPositionDateTypeType	PositionDateType;
+	///��ͷ��֤����
+	TThostFtdcRatioType	LongMarginRatio;
+	///��ͷ��֤����
+	TThostFtdcRatioType	ShortMarginRatio;
+	///�Ƿ�ʹ�ô��߱�֤���㷨
+	TThostFtdcMaxMarginSideAlgorithmType	MaxMarginSideAlgorithm;
+	///������Ʒ����
+	TThostFtdcInstrumentIDType	UnderlyingInstrID;
+	///ִ�м�
+	TThostFtdcPriceType	StrikePrice;
+	///��Ȩ����
+	TThostFtdcOptionsTypeType	OptionsType;
+	///��Լ������Ʒ����
+	TThostFtdcUnderlyingMultipleType	UnderlyingMultiple;
+	///�������
+	TThostFtdcCombinationTypeType	CombinationType;
+};
+

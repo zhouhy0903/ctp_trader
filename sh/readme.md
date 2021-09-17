@@ -1,0 +1,1 @@
+read_contract用于从得到的标的信息

@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../src/common/conn_db.hpp
+mysql/mysql.h
+-
+string
+-
+iostream
+-
+vector
+-
+
+/home/zhou/Desktop/code/git/ctp_trader/src/tools/data2csv.cpp
+iostream
+-
+string
+-
+mysql/mysql.h
+-
+time.h
+-
+sstream
+-
+common/conn_db.hpp
+/home/zhou/Desktop/code/git/ctp_trader/src/tools/common/conn_db.hpp
+

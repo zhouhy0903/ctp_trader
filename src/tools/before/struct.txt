@@ -1,0 +1,101 @@
+struct CThostFtdcInvestorPositionField
+{
+	///��Լ����
+	TThostFtdcInstrumentIDType	InstrumentID;
+	///���͹�˾����
+	TThostFtdcBrokerIDType	BrokerID;
+	///Ͷ���ߴ���
+	TThostFtdcInvestorIDType	InvestorID;
+	///�ֲֶ�շ���
+	TThostFtdcPosiDirectionType	PosiDirection;
+	///Ͷ���ױ���־
+	TThostFtdcHedgeFlagType	HedgeFlag;
+	///�ֲ�����
+	TThostFtdcPositionDateType	PositionDate;
+	///���ճֲ�
+	TThostFtdcVolumeType	YdPosition;
+	///���ճֲ�
+	TThostFtdcVolumeType	Position;
+	///��ͷ����
+	TThostFtdcVolumeType	LongFrozen;
+	///��ͷ����
+	TThostFtdcVolumeType	ShortFrozen;
+	///���ֶ�����
+	TThostFtdcMoneyType	LongFrozenAmount;
+	///���ֶ�����
+	TThostFtdcMoneyType	ShortFrozenAmount;
+	///������
+	TThostFtdcVolumeType	OpenVolume;
+	///ƽ����
+	TThostFtdcVolumeType	CloseVolume;
+	///���ֽ��
+	TThostFtdcMoneyType	OpenAmount;
+	///ƽ�ֽ��
+	TThostFtdcMoneyType	CloseAmount;
+	///�ֲֳɱ�
+	TThostFtdcMoneyType	PositionCost;
+	///�ϴ�ռ�õı�֤��
+	TThostFtdcMoneyType	PreMargin;
+	///ռ�õı�֤��
+	TThostFtdcMoneyType	UseMargin;
+	///����ı�֤��
+	TThostFtdcMoneyType	FrozenMargin;
+	///������ʽ�
+	TThostFtdcMoneyType	FrozenCash;
+	///�����������
+	TThostFtdcMoneyType	FrozenCommission;
+	///�ʽ���
+	TThostFtdcMoneyType	CashIn;
+	///������
+	TThostFtdcMoneyType	Commission;
+	///ƽ��ӯ��
+	TThostFtdcMoneyType	CloseProfit;
+	///�ֲ�ӯ��
+	TThostFtdcMoneyType	PositionProfit;
+	///�ϴν����
+	TThostFtdcPriceType	PreSettlementPrice;
+	///���ν����
+	TThostFtdcPriceType	SettlementPrice;
+	///������
+	TThostFtdcDateType	TradingDay;
+	///������
+	TThostFtdcSettlementIDType	SettlementID;
+	///���ֳɱ�
+	TThostFtdcMoneyType	OpenCost;
+	///��������֤��
+	TThostFtdcMoneyType	ExchangeMargin;
+	///��ϳɽ��γɵĳֲ�
+	TThostFtdcVolumeType	CombPosition;
+	///��϶�ͷ����
+	TThostFtdcVolumeType	CombLongFrozen;
+	///��Ͽ�ͷ����
+	TThostFtdcVolumeType	CombShortFrozen;
+	///���ն���ƽ��ӯ��
+	TThostFtdcMoneyType	CloseProfitByDate;
+	///��ʶԳ�ƽ��ӯ��
+	TThostFtdcMoneyType	CloseProfitByTrade;
+	///���ճֲ�
+	TThostFtdcVolumeType	TodayPosition;
+	///��֤����
+	TThostFtdcRatioType	MarginRateByMoney;
+	///��֤����(������)
+	TThostFtdcRatioType	MarginRateByVolume;
+	///ִ�ж���
+	TThostFtdcVolumeType	StrikeFrozen;
+	///ִ�ж�����
+	TThostFtdcMoneyType	StrikeFrozenAmount;
+	///����ִ�ж���
+	TThostFtdcVolumeType	AbandonFrozen;
+	///����������
+	TThostFtdcExchangeIDType	ExchangeID;
+	///ִ�ж�������
+	TThostFtdcVolumeType	YdStrikeFrozen;
+	///Ͷ�ʵ�Ԫ����
+	TThostFtdcInvestUnitIDType	InvestUnitID;
+	///�������ֲֳɱ���ֵ��ֻ�д�����ʹ��
+	TThostFtdcMoneyType	PositionCostOffset;
+	///tas�ֲ�����
+	TThostFtdcVolumeType	TasPosition;
+	///tas�ֲֳɱ�
+	TThostFtdcMoneyType	TasPositionCost;
+};

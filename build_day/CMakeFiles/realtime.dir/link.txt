@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/realtime.dir/src/tools/realtime.cpp.o  -o realtime   -L/home/zhou/Desktop/code/git/ctp_trader/lib  -Wl,-rpath,/home/zhou/Desktop/code/git/ctp_trader/lib -lthostmduserapi_se /usr/lib/x86_64-linux-gnu/libmysqlclient.so 

@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/position.dir/src/position/position.cpp.o  -o position   -L/home/zhou/Desktop/code/git/ctp_trader/lib  -Wl,-rpath,/home/zhou/Desktop/code/git/ctp_trader/lib -lthostmduserapi_se -lthosttraderapi_se /usr/lib/x86_64-linux-gnu/libmysqlclient.so 

@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/ThostFtdcTraderApi.h
+ThostFtdcUserApiStruct.h
+../include/ThostFtdcUserApiStruct.h
+
+../include/ThostFtdcUserApiDataType.h
+
+../include/ThostFtdcUserApiStruct.h
+ThostFtdcUserApiDataType.h
+../include/ThostFtdcUserApiDataType.h
+
+../src/common/data_handler.hpp
+fstream
+-
+cstring
+-
+vector
+-
+iconv.h
+-
+
+/home/zhou/Desktop/code/git/ctp_trader/src/tools/get_contract_id.cpp
+ThostFtdcTraderApi.h
+/home/zhou/Desktop/code/git/ctp_trader/src/tools/ThostFtdcTraderApi.h
+iostream
+-
+cstring
+-
+fstream
+-
+vector
+-
+common/data_handler.hpp
+/home/zhou/Desktop/code/git/ctp_trader/src/tools/common/data_handler.hpp
+

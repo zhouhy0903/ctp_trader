@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/marketdata.dir/src/marketdata.cpp.o  -o marketdata   -L/home/zhou/Desktop/code/git/ctp_trader/lib  -Wl,-rpath,/home/zhou/Desktop/code/git/ctp_trader/lib -lthostmduserapi_se /usr/lib/x86_64-linux-gnu/libmysqlclient.so -lpthread 

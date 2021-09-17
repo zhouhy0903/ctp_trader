@@ -1,0 +1,8 @@
+/home/zhou/Desktop/code/git/ctp_trader/build/CMakeFiles/rebuild_cache.dir
+/home/zhou/Desktop/code/git/ctp_trader/build/CMakeFiles/edit_cache.dir
+/home/zhou/Desktop/code/git/ctp_trader/build/CMakeFiles/data2csv.dir
+/home/zhou/Desktop/code/git/ctp_trader/build/CMakeFiles/realtime.dir
+/home/zhou/Desktop/code/git/ctp_trader/build/CMakeFiles/getcontract.dir
+/home/zhou/Desktop/code/git/ctp_trader/build/CMakeFiles/marketdata.dir
+/home/zhou/Desktop/code/git/ctp_trader/build/CMakeFiles/position.dir
+/home/zhou/Desktop/code/git/ctp_trader/build/CMakeFiles/test_orderinsert.dir

@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/getcontract.dir/src/tools/get_contract_id.cpp.o  -o getcontract   -L/home/zhou/Desktop/code/git/ctp_trader/lib  -Wl,-rpath,/home/zhou/Desktop/code/git/ctp_trader/lib -lthosttraderapi_se 

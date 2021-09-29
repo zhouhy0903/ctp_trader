@@ -68,43 +68,6 @@ int main(){
 	cout<<"main"<<endl;
 	string instrumentid,direction;
 	double miniumunit;
-	cin>>instrumentid>>direction>>miniumunit;
-
-	thread mo(makeorder,instrumentid,direction,miniumunit);
-	mo.join();
-	cout<<endl;
-	cout<<endl;
-	thread cp(check_position);
-	cp.join();
-	cout<<"main end"<<endl;
-	/*
-	pid_t pid=fork();
-	if (pid<0){
-		cerr<<"create pid error"<<endl;
-	}
-	if (pid==0){
-		// make order
-
-
-		cout<<"start making order"<<endl;
-		makeorder(instrumentid,direction,miniumunit);
-
-		cout<<"finished making order"<<endl;
-	} else{
-		// check position
-		cout<<"start checking position"<<endl;
-		int count=0;
-		this_thread::sleep_for(chrono::milliseconds(4000));
-		check_position();
-		while (1){
-			check_position();
-			cout<<"checkposition finished"<<endl;
-			count++;
-			if (count>30){
-				break;
-			}
-		}
-	}
-	*/
-
+	cin>>instrumentid>>direction;
+	makeorder(instrumentid,direction);
 }

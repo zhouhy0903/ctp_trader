@@ -29,19 +29,23 @@ class ContractId:public CThostFtdcTraderSpi{
 	void OnRspUserLogin(CThostFtdcRspUserLoginField *pRspUserLogin,CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast){
 		cout<<"Log In Finished!"<<endl;
 		cout<<pRspInfo->ErrorID<<endl;
-		cout<<pRspInfo->ErrorMsg<<endl;
+		char errormsg[20]={0};
+		convert(pRspInfo->ErrorMsg,strlen(pRspInfo->ErrorMsg),errormsg,20);
+		cout<<errormsg<<endl;
+		
 		ReqQryInstrument();
 	}
 	
 	void OnRspQryInstrument(CThostFtdcInstrumentField *pInstrument, CThostFtdcRspInfoField *pRspInfo, int nRequestID,bool bIsLast){
+		// cout<<"OnRspQryInstrument"<<endl;
 		ofstream ofile;
 		// cout<<path+"contract.txt"<<endl;
 		ofile.open(path+"contract.csv",ios::app|ios::out);
 		char InstrumentName[20]={0};
 		convert(pInstrument->InstrumentName,strlen(pInstrument->InstrumentName),InstrumentName,20);
-		//ofile<<pInstrument->InstrumentID <<","<<pInstrument->ExchangeID <<","<<InstrumentName <<","<<pInstrument->ExchangeInstID <<","<<pInstrument->ProductID <<","<<pInstrument->ProductClass <<","<<pInstrument->DeliveryYear <<","<<pInstrument->DeliveryMonth <<","<<pInstrument->MaxMarketOrderVolume <<","<<pInstrument->MinMarketOrderVolume <<","<<pInstrument->MaxLimitOrderVolume <<","<<pInstrument->MinLimitOrderVolume <<","<<pInstrument->VolumeMultiple <<","<<pInstrument->PriceTick <<","<<pInstrument->CreateDate <<","<<pInstrument->OpenDate <<","<<pInstrument->ExpireDate <<","<<pInstrument->StartDelivDate <<","<<pInstrument->EndDelivDate <<","<<pInstrument->InstLifePhase <<","<<pInstrument->IsTrading <<","<<pInstrument->PositionType <<","<<pInstrument->PositionDateType <<","<<pInstrument->LongMarginRatio <<","<<pInstrument->ShortMarginRatio <<","<<pInstrument->MaxMarginSideAlgorithm <<","<<pInstrument->UnderlyingInstrID <<","<<pInstrument->StrikePrice <<","<<pInstrument->OptionsType <<","<<pInstrument->UnderlyingMultiple <<","<<pInstrument->CombinationType<<endl;
-		//cout<<pInstrument->InstrumentID <<","<<pInstrument->ExchangeID <<","<<InstrumentName <<","<<pInstrument->ExchangeInstID <<","<<pInstrument->ProductID <<","<<pInstrument->ProductClass <<","<<pInstrument->DeliveryYear <<","<<pInstrument->DeliveryMonth <<","<<pInstrument->MaxMarketOrderVolume <<","<<pInstrument->MinMarketOrderVolume <<","<<pInstrument->MaxLimitOrderVolume <<","<<pInstrument->MinLimitOrderVolume <<","<<pInstrument->VolumeMultiple <<","<<pInstrument->PriceTick <<","<<pInstrument->CreateDate <<","<<pInstrument->OpenDate <<","<<pInstrument->ExpireDate <<","<<pInstrument->StartDelivDate <<","<<pInstrument->EndDelivDate <<","<<pInstrument->InstLifePhase <<","<<pInstrument->IsTrading <<","<<pInstrument->PositionType <<","<<pInstrument->PositionDateType <<","<<pInstrument->LongMarginRatio <<","<<pInstrument->ShortMarginRatio <<","<<pInstrument->MaxMarginSideAlgorithm <<","<<pInstrument->UnderlyingInstrID <<","<<pInstrument->StrikePrice <<","<<pInstrument->OptionsType <<","<<pInstrument->UnderlyingMultiple <<","<<pInstrument->CombinationType<<endl;
-		ofile<<pInstrument->InstrumentID<<","<<InstrumentName<<","<<pInstrument->IsTrading<<endl;
+		ofile<<pInstrument->InstrumentID <<","<<pInstrument->ExchangeID <<","<<InstrumentName <<","<<pInstrument->ExchangeInstID <<","<<pInstrument->ProductID <<","<<pInstrument->ProductClass <<","<<pInstrument->DeliveryYear <<","<<pInstrument->DeliveryMonth <<","<<pInstrument->MaxMarketOrderVolume <<","<<pInstrument->MinMarketOrderVolume <<","<<pInstrument->MaxLimitOrderVolume <<","<<pInstrument->MinLimitOrderVolume <<","<<pInstrument->VolumeMultiple <<","<<pInstrument->PriceTick <<","<<pInstrument->CreateDate <<","<<pInstrument->OpenDate <<","<<pInstrument->ExpireDate <<","<<pInstrument->StartDelivDate <<","<<pInstrument->EndDelivDate <<","<<pInstrument->InstLifePhase <<","<<pInstrument->IsTrading <<","<<pInstrument->PositionType <<","<<pInstrument->PositionDateType <<","<<pInstrument->LongMarginRatio <<","<<pInstrument->ShortMarginRatio <<","<<pInstrument->MaxMarginSideAlgorithm <<","<<pInstrument->UnderlyingInstrID <<","<<pInstrument->StrikePrice <<","<<pInstrument->OptionsType <<","<<pInstrument->UnderlyingMultiple <<","<<pInstrument->CombinationType<<endl;
+		cout<<pInstrument->InstrumentID <<","<<pInstrument->ExchangeID <<","<<InstrumentName <<","<<pInstrument->ExchangeInstID <<","<<pInstrument->ProductID <<","<<pInstrument->ProductClass <<","<<pInstrument->DeliveryYear <<","<<pInstrument->DeliveryMonth <<","<<pInstrument->MaxMarketOrderVolume <<","<<pInstrument->MinMarketOrderVolume <<","<<pInstrument->MaxLimitOrderVolume <<","<<pInstrument->MinLimitOrderVolume <<","<<pInstrument->VolumeMultiple <<","<<pInstrument->PriceTick <<","<<pInstrument->CreateDate <<","<<pInstrument->OpenDate <<","<<pInstrument->ExpireDate <<","<<pInstrument->StartDelivDate <<","<<pInstrument->EndDelivDate <<","<<pInstrument->InstLifePhase <<","<<pInstrument->IsTrading <<","<<pInstrument->PositionType <<","<<pInstrument->PositionDateType <<","<<pInstrument->LongMarginRatio <<","<<pInstrument->ShortMarginRatio <<","<<pInstrument->MaxMarginSideAlgorithm <<","<<pInstrument->UnderlyingInstrID <<","<<pInstrument->StrikePrice <<","<<pInstrument->OptionsType <<","<<pInstrument->UnderlyingMultiple <<","<<pInstrument->CombinationType<<endl;
+		// ofile<<pInstrument->InstrumentID<<","<<InstrumentName<<","<<pInstrument->IsTrading<<endl;
 		ofile.close();
 	}
 	void OnRspSettlementInfoConfirm(CThostFtdcSettlementInfoConfirmField *pSettlementInfoConfirm, CThostFtdcRspInfoField *pRspInfo, int nRequestID, bool bIsLast){
@@ -79,6 +83,7 @@ class ContractId:public CThostFtdcTraderSpi{
 		memset(&req,0,sizeof(req));
 		int ret=m_pTraderApi->ReqQryInstrument(&req,++iRequestID);
 		cout<<"ret"<<ret<<endl;
+		cout<<path+"contract.txt"<<endl;
 		if (ret!=0)
 			cerr<<"Request Instrument Failed!"<<endl;
 	}
@@ -95,7 +100,8 @@ class ContractId:public CThostFtdcTraderSpi{
 
 int main(){
 	CThostFtdcTraderApi *myapi=CThostFtdcTraderApi::CreateFtdcTraderApi();
-	ContractId contractid(myapi,"/media/zhou/3d3bcba8-4222-49a4-92ae-8d53e869e4ed/data/future/");
+	// ContractId contractid(myapi,"/media/zhou/3d3bcba8-4222-49a4-92ae-8d53e869e4ed/data/future/");
+	ContractId contractid(myapi,"/home/zhou/Desktop/data/future/");
 	myapi->RegisterSpi(&contractid);
 	char add_char[]="tcp://180.168.146.187:10202";//实盘
 	// char add_char[]="tcp://180.168.146.187:10130";//仿真

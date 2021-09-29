@@ -37,7 +37,8 @@ void savemarketdata(){
         cout<<"night"<<endl;
 	    p="/media/zhou/3d3bcba8-4222-49a4-92ae-8d53e869e4ed/data/future/contractid_test_night.csv";       
     } else{
-        p="/media/zhou/3d3bcba8-4222-49a4-92ae-8d53e869e4ed/data/future/contractid_test.csv";
+        // p="/media/zhou/3d3bcba8-4222-49a4-92ae-8d53e869e4ed/data/future/contractid_test.csv";
+        p="/home/zhou/Desktop/data/future/contractid.csv";
     }
 	vector<string> contractid=read_contractid(p);
     

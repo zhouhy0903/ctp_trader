@@ -18,6 +18,7 @@ include_directories(${MYSQL_INCLUDE_DIRS})
 find_package(Threads)
 # ADD_EXECUTABLE(test_checkposition src/test/test_checkposition.cpp)
 ADD_EXECUTABLE(test_orderinsert src/test/test_orderinsert.cpp)
+ADD_EXECUTABLE(makeorder src/test/makeorder.cpp)
 # ADD_EXECUTABLE(test_ordercheck src/test/test_ordercheck.cpp)
 ADD_EXECUTABLE(position src/position/position.cpp)
 
@@ -27,10 +28,12 @@ ADD_EXECUTABLE(realtime src/tools/realtime.cpp)
 ADD_EXECUTABLE(data2csv src/tools/data2csv.cpp)
 
 
+
 TARGET_LINK_LIBRARIES(realtime thostmduserapi_se ${MYSQL_LIBRARIES})
 
 # TARGET_LINK_LIBRARIES(test_checkposition thostmduserapi_se thosttraderapi_se ${MYSQL_LIBRARIES})
-TARGET_LINK_LIBRARIES(test_orderinsert thostmduserapi_se thosttraderapi_se ${MYSQL_LIBRARIES})
+TARGET_LINK_LIBRARIES(test_orderinsert thostmduserapi_se thosttraderapi_se ${MYSQL_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+TARGET_LINK_LIBRARIES(makeorder thostmduserapi_se thosttraderapi_se ${MYSQL_LIBRARIES})
 # TARGET_LINK_LIBRARIES(test_ordercheck thostmduserapi_se thosttraderapi_se ${MYSQL_LIBRARIES})
 
 TARGET_LINK_LIBRARIES(marketdata thostmduserapi_se ${MYSQL_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})

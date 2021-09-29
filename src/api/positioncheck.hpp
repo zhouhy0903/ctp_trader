@@ -9,6 +9,8 @@
 #include<mysql/mysql.h>
 #include<sstream>
 #include<time.h>
+#include<pthread.h>
+
 
 #include "common/data_handler.hpp"
 #include "common/conn_db.hpp"
@@ -69,21 +71,34 @@ class PositionCheck:public CThostFtdcTraderSpi{
 			if (gmtm->tm_sec<10) ss<<"0";
 			ss<<gmtm->tm_sec;
 			
-
+			
 			stringstream values;
 			values<<"'"<<ss.str()<<"','"<<pIP->InstrumentID <<"','"<<pIP->BrokerID <<"','"<<pIP->InvestorID <<"','"<<pIP->PosiDirection <<"','"<<pIP->HedgeFlag <<"','"<<pIP->PositionDate <<"','"<<pIP->YdPosition <<"','"<<pIP->Position <<"','"<<pIP->LongFrozen <<"','"<<pIP->ShortFrozen <<"','"<<pIP->LongFrozenAmount <<"','"<<pIP->ShortFrozenAmount <<"','"<<pIP->OpenVolume <<"','"<<pIP->CloseVolume <<"','"<<pIP->OpenAmount <<"','"<<pIP->CloseAmount <<"','"<<pIP->PositionCost <<"','"<<pIP->PreMargin <<"','"<<pIP->UseMargin <<"','"<<pIP->FrozenMargin <<"','"<<pIP->FrozenCash <<"','"<<pIP->FrozenCommission <<"','"<<pIP->CashIn <<"','"<<pIP->Commission <<"','"<<pIP->CloseProfit <<"','"<<pIP->PositionProfit <<"','"<<pIP->PreSettlementPrice <<"','"<<pIP->SettlementPrice <<"','"<<pIP->TradingDay <<"','"<<pIP->SettlementID <<"','"<<pIP->OpenCost <<"','"<<pIP->ExchangeMargin <<"','"<<pIP->CombPosition <<"','"<<pIP->CombLongFrozen <<"','"<<pIP->CombShortFrozen <<"','"<<pIP->CloseProfitByDate <<"','"<<pIP->CloseProfitByTrade <<"','"<<pIP->TodayPosition <<"','"<<pIP->MarginRateByMoney <<"','"<<pIP->MarginRateByVolume <<"','"<<pIP->StrikeFrozen <<"','"<<pIP->StrikeFrozenAmount <<"','"<<pIP->AbandonFrozen <<"','"<<pIP->ExchangeID <<"','"<<pIP->YdStrikeFrozen <<"','"<<pIP->InvestUnitID <<"','"<<pIP->PositionCostOffset <<"','"<<pIP->TasPosition <<"','"<<pIP->TasPositionCost <<"'";
 			string s="INSERT INTO `position` (`Time`,`InstrumentID`,`BrokerID`,`InvestorID`,`PosiDirection`,`HedgeFlag`,`PositionDate`,`YdPosition`,`Position`,`LongFrozen`,`ShortFrozen`,`LongFrozenAmount`,`ShortFrozenAmount`,`OpenVolume`,`CloseVolume`,`OpenAmount`,`CloseAmount`,`PositionCost`,`PreMargin`,`UseMargin`,`FrozenMargin`,`FrozenCash`,`FrozenCommission`,`CashIn`,`Commission`,`CloseProfit`,`PositionProfit`,`PreSettlementPrice`,`SettlementPrice`,`TradingDay`,`SettlementID`,`OpenCost`,`ExchangeMargin`,`CombPosition`,`CombLongFrozen`,`CombShortFrozen`,`CloseProfitByDate`,`CloseProfitByTrade`,`TodayPosition`,`MarginRateByMoney`,`MarginRateByVolume`,`StrikeFrozen`,`StrikeFrozenAmount`,`AbandonFrozen`,`ExchangeID`,`YdStrikeFrozen`,`InvestUnitID`,`PositionCostOffset`,`TasPosition`,`TasPositionCost`) VALUES(";
 			s=s+values.str()+");";
-			cout<<s<<endl;
+			//cout<<s<<endl;
 			insert_data(s,mysql,"Nothing!");
+			cout<<"after insert into mysql"<<endl;
+			string positionDir="NULL";
+			if (pIP->PosiDirection=='2')
+				positionDir="long";
+			else if(pIP->PosiDirection=='3')
+				positionDir="short";
+
+			cout<<pIP->InstrumentID<<" "<<pIP->Position<<" "<<positionDir<<endl;
 			// cout<<"InstrumentID:" <<pInvestorPosition->InstrumentID <<","<<"BrokerID:" <<pInvestorPosition->BrokerID <<","<<"InvestorID:" <<pInvestorPosition->InvestorID <<","<<"PosiDirection:" <<pInvestorPosition->PosiDirection <<","<<"HedgeFlag:" <<pInvestorPosition->HedgeFlag <<","<<"PositionDate:" <<pInvestorPosition->PositionDate <<","<<"YdPosition:" <<pInvestorPosition->YdPosition <<","<<"Position:" <<pInvestorPosition->Position <<","<<"LongFrozen:" <<pInvestorPosition->LongFrozen <<","<<"ShortFrozen:" <<pInvestorPosition->ShortFrozen <<","<<"LongFrozenAmount:" <<pInvestorPosition->LongFrozenAmount <<","<<"ShortFrozenAmount:" <<pInvestorPosition->ShortFrozenAmount <<","<<"OpenVolume:" <<pInvestorPosition->OpenVolume <<","<<"CloseVolume:" <<pInvestorPosition->CloseVolume <<","<<"OpenAmount:" <<pInvestorPosition->OpenAmount <<","<<"CloseAmount:" <<pInvestorPosition->CloseAmount <<","<<"PositionCost:" <<pInvestorPosition->PositionCost <<","<<"PreMargin:" <<pInvestorPosition->PreMargin <<","<<"UseMargin:" <<pInvestorPosition->UseMargin <<","<<"FrozenMargin:" <<pInvestorPosition->FrozenMargin <<","<<"FrozenCash:" <<pInvestorPosition->FrozenCash <<","<<"FrozenCommission:" <<pInvestorPosition->FrozenCommission <<","<<"CashIn:" <<pInvestorPosition->CashIn <<","<<"Commission:" <<pInvestorPosition->Commission <<","<<"CloseProfit:" <<pInvestorPosition->CloseProfit <<","<<"PositionProfit:" <<pInvestorPosition->PositionProfit <<","<<"PreSettlementPrice:" <<pInvestorPosition->PreSettlementPrice <<","<<"SettlementPrice:" <<pInvestorPosition->SettlementPrice <<","<<"TradingDay:" <<pInvestorPosition->TradingDay <<","<<"SettlementID:" <<pInvestorPosition->SettlementID <<","<<"OpenCost:" <<pInvestorPosition->OpenCost <<","<<"ExchangeMargin:" <<pInvestorPosition->ExchangeMargin <<","<<"CombPosition:" <<pInvestorPosition->CombPosition <<","<<"CombLongFrozen:" <<pInvestorPosition->CombLongFrozen <<","<<"CombShortFrozen:" <<pInvestorPosition->CombShortFrozen <<","<<"CloseProfitByDate:" <<pInvestorPosition->CloseProfitByDate <<","<<"CloseProfitByTrade:" <<pInvestorPosition->CloseProfitByTrade <<","<<"TodayPosition:" <<pInvestorPosition->TodayPosition <<","<<"MarginRateByMoney:" <<pInvestorPosition->MarginRateByMoney <<","<<"MarginRateByVolume:" <<pInvestorPosition->MarginRateByVolume <<","<<"StrikeFrozen:" <<pInvestorPosition->StrikeFrozen <<","<<"StrikeFrozenAmount:" <<pInvestorPosition->StrikeFrozenAmount <<","<<"AbandonFrozen:" <<pInvestorPosition->AbandonFrozen <<","<<"ExchangeID:" <<pInvestorPosition->ExchangeID <<","<<"YdStrikeFrozen:" <<pInvestorPosition->YdStrikeFrozen <<","<<"InvestUnitID:" <<pInvestorPosition->InvestUnitID <<","<<"PositionCostOffset:" <<pInvestorPosition->PositionCostOffset <<","<<"TasPosition:" <<pInvestorPosition->TasPosition <<","<<"TasPositionCost:" <<pInvestorPosition->TasPositionCost<<endl;
 
 		}
 		else
 			cout<<"pInvestorPosition null!"<<endl;
-			
+		
+		//最后一条数据退出线程
 		if (bIsLast==true)
-			exit(1);
+		{
+			pthread_exit(NULL);
+		}
+		// if (bIsLast==true)
+			//exit(1);
 		// if (bIsLast==1)
 		// {
 		// 	cout<<"log out!"<<endl;

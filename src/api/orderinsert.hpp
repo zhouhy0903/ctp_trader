@@ -9,12 +9,15 @@
 #include<fstream>
 #include <unistd.h>
 #include<vector>
+#include<pthread.h>
+// #include<chrono>
+// #include<thread>
 
 using namespace std;
 
 class OrderInsert:public CThostFtdcTraderSpi{
     public:
-    OrderInsert(CThostFtdcTraderApi *pTraderApi,string InsID,bool buysell,bool openclose,double munit):m_pTraderApi(pTraderApi){
+    OrderInsert(CThostFtdcTraderApi *pTraderApi,string InsID,bool buysell,bool openclose,int punit,double munit):m_pTraderApi(pTraderApi){
 		vector<string> ans(4);
 		ans=get_config();
 		BrokerID=ans[0];
@@ -24,9 +27,16 @@ class OrderInsert:public CThostFtdcTraderSpi{
 		InstrumentID=InsID;
 		slippage=atof(ans[3].c_str());
 		iRequestID=0;
+		flag=0;
 		BuySell=buysell;
 		OpenClose=openclose;
 		minimumunit=munit;
+
+		if (punit==-1)
+			unit=1;
+		else
+			unit=punit;
+
 	}
     ~OrderInsert(){}
     
@@ -58,9 +68,7 @@ class OrderInsert:public CThostFtdcTraderSpi{
 		cout<<"RspOrderInsert"<<endl;
 		char ErrorMsg[20]={0};
 		convert(pRspInfo->ErrorMsg,strlen(pRspInfo->ErrorMsg),ErrorMsg,20);
-		
 		cout<<pRspInfo->ErrorID<<" "<<ErrorMsg<<endl;
-		exit(1);
 	}
 
 
@@ -80,8 +88,17 @@ class OrderInsert:public CThostFtdcTraderSpi{
 		cout<<"RspQryDepthMarket"<<endl;
 		price=pDepthMarketData->LastPrice;
 		cout<<price<<endl;
-		InsertOrder();
-	};		
+
+		for (int i=0;i<unit;i++)
+			InsertOrder();
+			
+	};	
+
+	void OnRtnTrade(CThostFtdcTradeField *pTrade) {
+		cout<<"Traded!"<<endl;
+		if (flag==1)
+			pthread_exit(NULL);
+	};
 	
 	// void OnErrRtnOrderInsert(CThostFtdcInputOrderField *pInputOrder, CThostFtdcRspInfoField *pRspInfo) {
 	// 	cout<<"error"<<endl;
@@ -190,7 +207,10 @@ class OrderInsert:public CThostFtdcTraderSpi{
 		int ret=m_pTraderApi->ReqOrderInsert(&ord,++iRequestID);
 		if (ret!=0)
 			cerr<<"OrderInsert Failed"<<endl;
-		
+		cout<<"insertorder func end"<<endl;	
+		flag=1;
+		// this_thread::sleep_for(chrono::milliseconds(3000));
+		// pthread_exit(NULL);
 	}
     CThostFtdcTraderApi *m_pTraderApi;
     int iRequestID;
@@ -205,6 +225,9 @@ class OrderInsert:public CThostFtdcTraderSpi{
 		double price;
 		double slippage;
 		double minimumunit;
+
+		int flag;
+		int unit;
 };
 
 #endif

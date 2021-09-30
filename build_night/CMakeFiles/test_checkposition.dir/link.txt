@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/test_checkposition.dir/src/test/test_checkposition.cpp.o  -o test_checkposition   -L/home/zhou/Desktop/code/git/ctp_trader/lib  -Wl,-rpath,/home/zhou/Desktop/code/git/ctp_trader/lib -lthostmduserapi_se -lthosttraderapi_se /usr/lib/x86_64-linux-gnu/libmysqlclient.so 

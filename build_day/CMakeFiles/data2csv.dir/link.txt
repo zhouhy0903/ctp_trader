@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/data2csv.dir/src/tools/data2csv.cpp.o  -o data2csv   -L/home/zhou/Desktop/code/git/ctp_trader/lib  -Wl,-rpath,/home/zhou/Desktop/code/git/ctp_trader/lib /usr/lib/x86_64-linux-gnu/libmysqlclient.so 

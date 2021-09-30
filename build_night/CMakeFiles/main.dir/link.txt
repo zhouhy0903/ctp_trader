@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/main.dir/src/main.cpp.o  -o main   -L/home/zhou/Desktop/code/git/ctp_trader/lib  -Wl,-rpath,/home/zhou/Desktop/code/git/ctp_trader/lib -lthostmduserapi_se /usr/lib/x86_64-linux-gnu/libmysqlclient.so -lpthread 
